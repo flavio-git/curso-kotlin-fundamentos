@@ -1,0 +1,78 @@
+CURSO | Kotlin: primeiros passos e Orientação a Objetos
+Plataforma Alura
+
+#ANOTAÇÕES
+
+- Funções
+    por padrão não precisamos informar um tipo de retorno na função, fica subentendido que será do tipo Unit
+    entrentanto se quisermos um retorno do tipo Boolean precisamos informar.
+
+    Ex: retorno Unit
+                                                Esse unit aqui não precisa ser declarado
+    fun somar(valorA: Double, valorB: Double): Unit{
+        função...
+    }
+
+    Ex: retorno Double
+                                                Precisa declarar se quisermos o retorno Boolean
+    fun maior(valorA: Double, valorB: Double): Boolean{
+        função...
+    }
+
+- Modificadores de acesso
+    por padrão os atributos das classes são públicos
+    caso queira transformar precisamos alterar
+
+    class Conta(private val titular: String, private var saldo: Double)
+
+    Métodos getters and setters
+
+    fun getSaldo(): Double{
+        return this.saldo
+    }
+
+    fun setSaldo(saldo: Double){
+        this.saldo = saldo
+    }
+
+    # NO KOTLIN, AO CONTRÁRIO DO JAVA, NÃO É USUAL UTILIZARMOS GETTERS AND SETTERS
+    eles já estão implementados dentro dos atributos, chamamos de Properties
+    o código abaixo é mais idiomático com o Kotlin
+
+    class Conta{
+        var saldo = 0.0
+            set(valor){
+                field = valor
+            }
+
+            get(){
+                return field
+            }
+    }
+
+    Ou seja já estão implementados, porém podemos alterá-los.
+    Para ascessar o valor usamos "field"
+
+- Método construtor
+
+    CONSTRUTOR PRIMÁRIO
+    class Conta(titular: String, saldo: Double)
+
+    CONSTRUTOR SECUNDÁRIO
+    class Conta{
+        val titular = ""
+        var saldo = 0.0
+
+        constructor(titular: String, saldo: Double){
+            this.titular = titular
+            this.saldo = saldo
+        }
+    }
+
+- Labels | Named Arguments --> https://kotlinlang.org/docs/functions.html#default-arguments
+    quando declaramos objetos ou até em funções podemos usar as labels
+
+    utilizando a classe Conta
+
+    val conta1 = Conta(saldo = 5.00, titular = "Flávio")
+    #dessa forma não importa a ordem que está no metódo construtor

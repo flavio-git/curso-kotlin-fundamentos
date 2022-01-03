@@ -1,0 +1,70 @@
+CURSO | Kotlin: herança, polimorfismo e Interface
+Plataforma Alura
+
+#ATALHOS INTELLIJ
+
+Ctrl + Alt + M --> para gerar uma função através de um bloco
+Alt + 1 --> mostra o menu project
+Ctrl + Insert --> com o package selecionado podemos inserir novos arquivos
+
+#ANOTAÇÕES
+
+- Herança
+    na classe mãe temos que informar que ela será herdada através da palavra reservada "open"
+
+    *classe mãe
+    open class Funcionario(
+        val nome: String,
+        val cpf: String,
+        var salario: Double
+    ){ }
+
+    já na classe filha pelo o que foi explicado na aula teremos de informar todos as properties novamente
+    e devemos informar a classe mãe através de " : classeMaeNome (propertie = propertie)"
+
+    *classe filha
+    class Gerente(
+        nome: String,
+        cpf: String,
+        salario: Double,
+        val senha: Int,
+    ) : Funcionario(nome = nome, cpf = cpf, salario = salario)
+
+    para métodos o pensamento é o mesmo. O Kotlin parte da ideia que tudo é imutável
+    dessa forma também precisamos informar no método da classe mãe o "open"
+
+    *classe mãe
+    open fun bonificacao(){
+    }
+
+    na classe será um "override"
+
+    *classe filha
+    override fun bonificacao(){
+    }
+
+    Podemos utilizar o que está no método da classe mãe, para isso usamos o "super" na classe filha
+
+        override val bonificacao: Double
+                get() {
+                    return super.bonificacao + salario + plr
+                }
+
+- Convertendo método (função) em propertie
+    no Kotlin em alguns casos é idiomático tratar métodos como properties
+
+    *Função
+    fun bonificacao(): Double{
+        return salario * 0.10
+    }
+
+    *Propertie
+    open val bonificacao: Double
+            get() {
+                return salario * 0.10
+            }
+    ou
+
+    open val bonificacao: Double get() = salario * 0.1
+
+

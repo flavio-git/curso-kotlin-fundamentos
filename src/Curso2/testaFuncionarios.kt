@@ -3,8 +3,8 @@ package Curso2
 fun testaFuncionarios() {
     println("Bem vindo ao ByteBank")
 
-    val funcionario1 = Funcionario(nome = "Flávio", cpf = "111.111.111-11", salario = 1000.0)
-    val funcionario2 = Funcionario(salario = 2000.0, nome = "Fernanda", cpf = "222.222.222.-22")
+    val funcionario1 = Analista(nome = "Flávio", cpf = "111.111.111-11", salario = 1000.0)
+    val funcionario2 = Analista(salario = 2000.0, nome = "Fernanda", cpf = "222.222.222.-22")
 
     val funcionario2Bonificacao = funcionario2.bonificacao
 
@@ -27,7 +27,8 @@ fun testaFuncionarios() {
         nome = "Rogerio",
         cpf = "444.444.444-44",
         salario = 5000.00,
-        plr = 2500.00
+        plr = 2500.00,
+        senha = 1234
     )
 
     println("Funcionário: ${funcionario4.nome} | Bonificação ${funcionario4.bonificacao}")

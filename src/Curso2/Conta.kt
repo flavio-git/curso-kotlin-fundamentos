@@ -1,6 +1,6 @@
 package Curso2
 
-open class Conta(private val titular: String,
+abstract class Conta(private val titular: String,
             private val numeroConta: String,
             private val agencia: String,
             private var saldo: Double

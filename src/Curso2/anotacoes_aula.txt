@@ -1,11 +1,33 @@
 CURSO | Kotlin: herança, polimorfismo e Interface
 Plataforma Alura
 
+#A IMPORTÂNCIA
+
+    Agora que você teve o primeiro contato com os principais conceitos da
+    Orientação a Objetos, muito provavelmente deve estar com dúvida sobre a real
+    importância de aprender esses conceitos, além do que foi visto, como é o caso
+    das boas práticas de programação, reutilização de código e outros benefícios.
+
+    Além deles, muitas bibliotecas ou frameworks (ferramentas que auxiliam a
+    criação de aplicações, como por exemplo, o framework do Android para criar
+    Apps Android), também utilizam as mesmas técnicas vistas em curso, portanto,
+    em vez de criar o código desde o zero, muito provavelmente vai existir um
+    código que te oferece uma classe para ser herdada, ou então, uma chamada de
+    um método que exige o envio de uma referência que implementa uma interface
+    ou algo mais genérico.
+
+    Portanto, além de criar e usar, é muito importante dominar o assunto vai te
+    ajudar a aprender novas tecnologias que usam como base o que foi visto em
+    curso. Sendo assim, aproveite esse momento para tirar dúvidas e praticar
+    bastante o conteúdo do curso.
+
 #ATALHOS INTELLIJ
 
 Ctrl + Alt + M --> para gerar uma função através de um bloco
 Alt + 1 --> mostra o menu project
 Ctrl + Insert --> com o package selecionado podemos inserir novos arquivos
+Crtl + N --> atalho para busca
+Alt + Shift + X --> fecha todas as abas
 
 #ANOTAÇÕES
 
@@ -67,4 +89,153 @@ Ctrl + Insert --> com o package selecionado podemos inserir novos arquivos
 
     open val bonificacao: Double get() = salario * 0.1
 
+- Classes abstratas
+    quando informamos que uma classe é abstrata já automaticamente dito que ela é "open", ou seja,
+    "abstract open class ..." é redundante.
 
+    abstract class Funcionario(...){
+        ...
+    }
+
+    quando quisermos informar que as classes filhas devem implementar seu próprio método ou propertie
+    usamos o "abstract" também.
+
+    abstract val bonificacao: Double # no caso de propertie
+
+    fun autentica(senha: Int): Boolean # no caso de função
+
+    não implementação de código na classe mãe pois isso deverá ser implementada pelas filhas
+    então quando criarmos uma nova classe filha de uma mãe abstrata e essa tiver métodos ou properties abstratas
+    a classe filha deverá implementá-la
+
+    - Protected
+        no Kotlin temos a mesma ideia que aprendi em Java sobre o protected
+        quando alguma propertie ou método estiverem em protected as classes filhas poderão ascessar
+        quando estiver em private nem as classes filhas conseguem
+
+- Problemas com herança
+    resolvemos o problema da autenticacao dizendo que o FuncionarioAdmin é uma classe filha de Funcionario, sendo assim
+    Diretor e Gerente são FuncionarioAdmin e são Funcionario. Entretanto Anlista não é FuncionarioAdmin com isso ele
+    não consegue ascessar o sistema, pois só FuncionarioAdmin tem o método autentica.
+    agora vejamos a classe SistemaInterno:
+
+    class SistemaInterno {
+
+        fun entra(admin: FuncionarioAdmin, senha: Int){
+            if (admin.autentica(senha)){
+                println("Bem vindo ao ByteBank")
+            } else {
+                println("Login inválido")
+            }
+        }
+    }
+
+    e se quisermos que um cliente também tenha acesso ao sistema?
+
+    class SistemaInterno {
+
+        fun entra(admin: FuncionarioAdmin, senha: Int){
+            if (admin.autentica(senha)){
+                println("Bem vindo ao ByteBank")
+            } else {
+                println("Login inválido")
+            }
+        }
+
+        fun entra(cliente: Cliente, senha: Int){
+                    if (admin.autentica(senha)){
+                        println("Bem vindo ao ByteBank")
+                    } else {
+                        println("Login inválido")
+                    }
+                }
+    }
+
+    Vemos que teria uma duplicidade de código... e se queremos que além de cliente ou tipo de usuário tenha acesso?
+    podemos resolver isso com interfaces
+
+- Interfaces {Usar o polimorfismo em classes que tem o mesmo comportamento, mas não herdam da mesma classe}
+    construindo uma interface
+
+        interface Autenticavel {
+
+            fun autentica(senha: Int): Boolean
+
+        }
+
+    Precisamos implementar a interface nas classes
+
+    class Diretor(
+        nome: String,
+        cpf: String,
+        salario: Double,
+        senha: Int,
+        var plr: Double
+    ) : FuncionarioAdmin(nome = nome, cpf = cpf, salario = salario, senha = senha), Autenticavel {
+
+        override val bonificacao: Double
+            get() {
+                return (salario * 0.10) + salario + plr
+            }
+    }
+
+    class Cliente(
+        val nome: String,
+        val cpf: String,
+        val senha: Int
+    ): Autenticavel {
+
+        override fun autentica(senha: Int): Boolean{
+            if (this.senha == senha){
+                return true
+            }
+            return false
+        }
+
+    }
+
+    Com isso agora classe SistemaInterno:
+
+    class SistemaInterno {
+
+        fun entra(admin: Autenticavel, senha: Int){
+            if (admin.autentica(senha)){
+                println("Bem vindo ao ByteBank")
+            } else {
+                println("Login inválido")
+            }
+        }
+    }
+
+    as interfaces permitem implementação padrão.
+
+    interface Autenticavel {
+
+        val senha: Int // isso garante que a classe que for "autenticavel" terá uma propertie senha
+
+        fun autentica(senha: Int): Boolean {
+            if (this.senha == senha) {
+                return true
+            }
+            return false
+        }
+    }
+
+    class Cliente(
+        val nome: String,
+        val cpf: String,
+        override val senha: Int // estamos sobreescrevendo a propertie da interface "Autenticavel"
+    ): Autenticavel {
+
+    }
+
+    Porém teremos de ter cuidado utilizando como método padrão em uma interface
+    A propertie senha será public, não conseguimos deixar private ou protected
+    Com isso a "senha" que é uma informação sensível não é recomendado deixar public
+    então o melhor nesse caso é a implementação que cada classe que tenha a interface faça sua implementação
+
+    interface Autenticavel {
+
+                fun autentica(senha: Int): Boolean
+
+            }

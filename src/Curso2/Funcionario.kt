@@ -1,14 +1,11 @@
 package Curso2
 
-open class Funcionario(
+abstract class Funcionario(
     val nome: String,
     val cpf: String,
     var salario: Double
 ) {
 
-    open val bonificacao: Double
-        get() {
-            return salario * 0.10
-        }
+    abstract val bonificacao: Double
 
 }

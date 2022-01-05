@@ -4,12 +4,17 @@ class Diretor(
     nome: String,
     cpf: String,
     salario: Double,
+    senha: Int, // estamos sobreescrevendo a propertie da interface "Autenticavel"
     var plr: Double
-) : Funcionario(nome = nome, cpf = cpf, salario = salario) {
+) : FuncionarioAdmin(nome = nome, cpf = cpf, salario = salario, senha = senha), Autenticavel {
 
     override val bonificacao: Double
         get() {
-            return super.bonificacao + salario + plr
+            return (salario * 0.10) + salario + plr
         }
+
+    override fun autentica(senha: Int): Boolean {
+        return super<Autenticavel>.autentica(senha)
+    }
 
 }

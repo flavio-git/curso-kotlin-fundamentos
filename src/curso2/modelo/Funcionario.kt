@@ -1,4 +1,4 @@
-package Curso2
+package curso2.modelo
 
 abstract class Funcionario(
     val nome: String,

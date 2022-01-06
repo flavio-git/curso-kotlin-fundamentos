@@ -1,20 +1,19 @@
-package Curso2
+package curso2.modelo
 
-class Diretor(
+class Gerente(
     nome: String,
     cpf: String,
     salario: Double,
-    senha: Int, // estamos sobreescrevendo a propertie da interface "Autenticavel"
-    var plr: Double
+    senha: Int,
 ) : FuncionarioAdmin(nome = nome, cpf = cpf, salario = salario, senha = senha), Autenticavel {
 
     override val bonificacao: Double
         get() {
-            return (salario * 0.10) + salario + plr
+            return (salario * 0.10) + salario
         }
 
     override fun autentica(senha: Int): Boolean {
-        return super<Autenticavel>.autentica(senha)
+        return super<FuncionarioAdmin>.autentica(senha)
     }
 
 }

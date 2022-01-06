@@ -1,7 +1,7 @@
-package Curso2
+package curso3.br.com.alura.bytebank.modelo
 
 class ContaCorrente(
-    titular: String,
+    titular: Cliente,
     numeroConta: String,
     agencia: String,
     saldo: Double

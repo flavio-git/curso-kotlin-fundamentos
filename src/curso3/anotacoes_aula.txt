@@ -1,0 +1,44 @@
+CURSO | Kotlin: herança, polimorfismo e Interface
+Plataforma Alura
+
+#ATALHOS INTELLIJ
+
+Crtl + Alt + O --> otimização de pacotes
+
+Aula 01
+    - Como criar pacotes e organizar os arquivos;
+    - Como importar códigos de pacotes diferentes;
+    - O que é o pacote padrão e os pacotes padrões do Kotlin;
+    - Quais são as regras e possibilidades ao declarar pacotes e importar código;
+    - Adicionar apelidos aos imports;
+    - Criar pacotes considerando a convenção do domínio inverso.
+
+Aula 02
+    - Criar properties de tipos de outras classes;
+    - O que é a composição e quando criá-las;
+    - As principais vantagens do uso da composição;
+    - Relacionamento entre as classes;
+    - Diferenças e quando usar herança ou composição.
+
+
+- Packages
+
+    import modelo.Funcionario
+    # modelo = Pacote
+    # Funcionario = Classe
+    # o nome técnico de "modelo.Funcionario" é "fully qualified name"
+
+    class Auxiliar (...) : modelo.Funcionario(...) {...}
+    - dessa forma não precisamos fazer o "import modelo.Funcionario" no início do arquivo
+
+    Domínio reverso
+    package br.com.alura.bytebank
+
+- Composição
+    quando uma das properties de uma classe recebe um objeto de uma outra classe
+
+    Ex:
+    class Conta(
+        titular: Cliente
+    )
+

@@ -1,4 +1,9 @@
-package Curso2
+package curso3.br.com.alura.bytebank.teste
+
+import curso2.modelo.Cliente
+import curso2.modelo.Diretor
+import curso2.modelo.Gerente
+import curso2.modelo.SistemaInterno
 
 fun testaAutenticacao(){
 

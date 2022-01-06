@@ -1,4 +1,4 @@
-package Curso1
+package curso1
 
 fun main() {
     println("Bem vindo ao ByteBank")

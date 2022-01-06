@@ -1,14 +1,15 @@
-package Curso2
+package curso3.br.com.alura.bytebank.modelo
 
-abstract class Conta(private val titular: String,
+abstract class Conta(
+            private val titular: Cliente,
             private val numeroConta: String,
             private val agencia: String,
             private var saldo: Double
 ){
 
-    val nomeSistema = titular.uppercase()
+    val nomeSistema = titular.nome.uppercase()
 
-    fun getTitular(): String{
+    fun getTitular(): Cliente{
         return this.titular
     }
 

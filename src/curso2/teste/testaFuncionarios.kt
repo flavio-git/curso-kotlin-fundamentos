@@ -1,4 +1,9 @@
-package Curso2
+package curso2
+
+import curso2.modelo.Analista
+import curso2.modelo.CalculadoraBonificacao
+import curso2.modelo.Diretor
+import curso2.modelo.Gerente
 
 fun testaFuncionarios() {
     println("Bem vindo ao ByteBank")

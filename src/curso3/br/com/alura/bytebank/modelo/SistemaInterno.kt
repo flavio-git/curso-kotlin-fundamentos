@@ -1,4 +1,6 @@
-package Curso2
+package curso3.br.com.alura.bytebank.modelo
+
+import curso2.modelo.Autenticavel
 
 class SistemaInterno {
 

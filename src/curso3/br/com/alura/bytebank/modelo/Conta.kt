@@ -1,11 +1,24 @@
 package curso3.br.com.alura.bytebank.modelo
 
+var totalContas: Int = 0 // variável global, sempre que uma nova conta é criada há um incremento nessa variável
+    private set         // essa variável global funciona como uma propertie, podemos deixar os atributos e métodos privados
+
 abstract class Conta(
             private val titular: Cliente,
             private val numeroConta: String,
             private val agencia: String,
             private var saldo: Double
 ){
+
+    companion object Contador { // não é necessário declarar o nome do companion
+        var total: Int = 0
+            private set
+    }
+
+    init {
+        totalContas++  // incrementando pela variável global
+        Contador.total++     // incrementando pelo companion
+    }
 
     val nomeSistema = titular.nome.uppercase()
 

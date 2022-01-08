@@ -20,6 +20,19 @@ Aula 02
     - Relacionamento entre as classes;
     - Diferenças e quando usar herança ou composição.
 
+Aula 03
+    - Como criar variáveis globais;
+    - Os motivos para evitar variáveis globais;
+    - Como restringir o acesso de variáveis globais;
+    - O que são e como utilizar object expressions e declarations;
+    - Como criar membros de classe que mantém o mesmo valor independente do
+    objeto com object declarions e companion object.
+
+Aula 04
+    - O que é a classe Any;
+    - Como realizar o polimorfismo genérico em todas as classes;
+    - A utilizar o casting para converter um objeto para outro tipo;
+    - A usar o Smart cast para evitar que o programa apresente problemas.
 
 - Packages
 
@@ -42,3 +55,68 @@ Aula 02
         titular: Cliente
     )
 
+- Variáveis Globais
+    todo mundo pode alterar caso não tenha métodos ou properties privadas
+
+    poderiamos criar no main.kt uma variável global totalContas e fazer um método init na classe
+    Conta para que sempre que uma nova conta fosse criada seja incrementado 1 no totalContas
+
+    *-----MAIN------*
+
+    var totalContas: Int = 0
+
+    fun main(){
+    }
+
+    *----CONTA----*
+
+    class Conta(...){
+
+        init(){
+            totalContas++
+        }
+    }
+
+    entretanto não é o mais recomendável utilizar variáveis globais
+
+- Objects Expressions
+    podemos criar objetos anónimos sem ter que criar uma classe para eles, por exemplo,
+    temos a classe Cliente poderiamos criar um objeto anónimo com os mesmos
+    comportamentos de cliente
+
+    *-----MAIN----*
+
+    val fernanda  = object  {
+            val nome: String = "Fernanda"
+            val cpf: String = "1234"
+            val senha: Int = 1000
+
+            fun autentica(senha: Int) = this.senha === senha
+        }
+
+- Objects Declarations
+    companions
+
+    abstract class Conta(
+                private val titular: Cliente,
+                private val numeroConta: String,
+                private val agencia: String,
+                private var saldo: Double
+    ){
+
+        companion object {
+            var total: Int = 0
+        }
+
+- Classe Any
+    todas as classes criadas ou tipos primitivos são herdados da classe Any
+    é como se fosse a classe Object do Java
+
+    podemos criar um objeto da classe Object no Kotlin
+
+    um ponto interessante é que a classe Any não herda de Object
+    entretanto em run-time ela é mapeada para Object
+
+    sendo assim a declaração abaixo não seria válida
+
+    val objeto: Object = Any()

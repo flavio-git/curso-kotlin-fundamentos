@@ -1,11 +1,10 @@
 package curso3.br.com.alura.bytebank.teste
 
-import curso3.br.com.alura.bytebank.modelo.Cliente
-import curso3.br.com.alura.bytebank.modelo.ContaCorrente
-import curso3.br.com.alura.bytebank.modelo.ContaPoupanca
-import curso3.br.com.alura.bytebank.modelo.Endereco
+import curso3.br.com.alura.bytebank.modelo.*
 
 fun testaContas(){
+
+    println("Chamando TestaContas")
 
     val guilherme = Cliente(
         nome = "Guilherme",
@@ -42,5 +41,8 @@ fun testaContas(){
         agencia = "803",
         saldo = 0.0
     )
+
+    println("Variável Global | Total de contas criadas = $totalContas")
+    println("Companion | Total de contas criadas = ${Conta.Contador.total}") // pode ser apenas Conta.total
 
 }

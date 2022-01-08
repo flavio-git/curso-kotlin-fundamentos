@@ -7,6 +7,8 @@ import curso2.modelo.SistemaInterno
 
 fun testaAutenticacao(){
 
+    println("Chamando TestaAutenticação")
+
     val eclair = Gerente(
         nome = "Eclair",
         cpf = "125",

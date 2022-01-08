@@ -9,4 +9,9 @@ class Cliente(
     override val senha: Int // estamos sobreescrevendo a propertie da interface "Autenticavel"
 ): Autenticavel {
 
+    override fun toString(): String {
+        return "Cliente nome: $nome, CPF: $cpf"
+    }
+
+
 }

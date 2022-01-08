@@ -34,6 +34,12 @@ Aula 04
     - A utilizar o casting para converter um objeto para outro tipo;
     - A usar o Smart cast para evitar que o programa apresente problemas.
 
+Aula 05
+    - Para que serve cada método da classe Any;
+    - Como sobrescrever cada um dos métodos;
+    - Raw String para editar String;
+    - Sobrescrever o equals() e hashcode() corretamente.
+
 - Packages
 
     import modelo.Funcionario
@@ -83,6 +89,12 @@ Aula 04
     podemos criar objetos anónimos sem ter que criar uma classe para eles, por exemplo,
     temos a classe Cliente poderiamos criar um objeto anónimo com os mesmos
     comportamentos de cliente
+
+    Documentation:
+        Object expressions create objects of anonymous classes, that is, classes that aren't explicitly declared with
+        the class declaration. Such classes are useful for one-time use. You can define them from scratch, inherit from
+        existing classes, or implement interfaces. Instances of anonymous classes are also called anonymous objects
+        because they are defined by an expression, not a name.
 
     *-----MAIN----*
 

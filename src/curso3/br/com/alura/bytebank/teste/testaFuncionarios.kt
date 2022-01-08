@@ -6,6 +6,9 @@ import curso2.modelo.Diretor
 import curso2.modelo.Gerente
 
 fun testaFuncionarios() {
+
+    println("Chamando TestaFuncionários")
+
     println("Bem vindo ao ByteBank")
 
     val funcionario1 = Analista(nome = "Flávio", cpf = "111.111.111-11", salario = 1000.0)

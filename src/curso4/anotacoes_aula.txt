@@ -1,3 +1,32 @@
 CURSO | Kotlin: lidando com exceptions e referências nulas
 Plataforma Alura
 
+Aula 01:
+    - O que é a pilha de execução e como funciona;
+    - O que é o depurador e como utilizá-lo no IntelliJ;
+    - O que são exceptions e como avaliá-las.
+
+Aula 02:
+    - Como lidar com exceptions utilizando o try-expression;
+    - Como ler a stack trace da exception;
+    - Como utilizar as expressões no try-expression e ifs.
+
+
+- Exception
+
+    try {
+            println("Tentando dividir 10 por 0")
+            10 / 0
+        } catch (e: ArithmeticException){
+            println("Peguei Exception da classe ArithmeticException")
+        } finally {
+            println("O Finally sempre será executado")
+        }
+
+
+    #Try is an expression
+
+    val a: Int? = try{ parseInt(input) } catch (e: NumberFormatException) { null }
+    // ele tenta converter um input para um formato de inteiro e caso não consiga retorna um nulo
+
+- Expressions --> Acessar arquivo "testaExpressions.kt"

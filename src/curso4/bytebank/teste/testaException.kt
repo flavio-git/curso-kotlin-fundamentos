@@ -39,4 +39,17 @@ fun testaException(){
         println("O Finally sempre será executado")
     }
 
+    divisor = 0
+
+    try {
+        println("Tentando dividir $dividento por $divisor")
+        dividento / divisor
+    } catch (e: Throwable){
+        println("Mensagem de erro: ${e.message}")
+        println("Peguei Exception da classe Throwable")
+    } finally {
+        println("O Finally sempre será executado")
+    }
+
+
 }

@@ -1,6 +1,11 @@
 CURSO | Kotlin: lidando com exceptions e referências nulas
 Plataforma Alura
 
+#ATALHOS INTELLIJ
+
+Crtl + H --> mostra a hierarquia de uma classe
+Crtl + P --> mostra os parâmetros que um objeto deve receber
+
 Aula 01:
     - O que é a pilha de execução e como funciona;
     - O que é o depurador e como utilizá-lo no IntelliJ;
@@ -11,6 +16,23 @@ Aula 02:
     - Como ler a stack trace da exception;
     - Como utilizar as expressões no try-expression e ifs.
 
+Aula 03:
+    - Lançar exceções;
+    - Criar exceções e quais cuidados precisam ser tomados;
+    - Utilizar exceções no código da regra de negócio.
+
+Aula 04:
+    - Enviar mensagem personalizada ao lançar exceptions;
+    - Lidar com mais de uma exception no mesmo comportamento;
+    - Capturar quaisquer exceptions com a classe Exception.
+
+Aula 05:
+    - O que é o null safety
+    - Os tipos de variáveis que podem ser nulos
+    - A Safe call e o not-null assertion operator
+    - A função de escopo let e como chamá-la com o a safe call
+    - Elvis expression
+    - Safe casts
 
 - Exception
 
@@ -30,3 +52,40 @@ Aula 02:
     // ele tenta converter um input para um formato de inteiro e caso não consiga retorna um nulo
 
 - Expressions --> Acessar arquivo "testaExpressions.kt"
+
+- Criando uma Exception
+    ela irá herdar de Throwable, porém devemos evitar fazer direto de Throwable
+    Error e Exception herdam de Throwable.
+     - Error são erros na JVM, difílmente o programador irá tratar dessa classe
+     - Exception são erros de lógica, aqui o programador pode atuar
+
+- Checked Exceptions
+    Por mais que o Kotlin opere na JVM, não existem exceções checked no Kotlin.
+
+- Delegations
+    Ao implementarmos a autenticação na classe Conta, reutilizamos o código do titular do tipo Cliente delegando a
+    responsabilidade de implementação.
+
+    Trata-se de um padrão chamado delegation, e existe uma maneira mais objetiva de implementá-lo no Kotlin utilizando
+    a delegação de propriedade (Property delegation).
+
+
+    abstract class Conta(
+        var titular: Cliente,
+        val numero: Int
+    ) : Autenticavel {
+
+        // restante do código
+
+        override fun autentica(senha: Int): Boolean {
+            return titular.autentica(senha)
+        }
+
+    }
+
+    Temos o seguinte resultado com a delegação de propriedade:
+
+    abstract class Conta(
+        val titular: Cliente,
+        val numero: Int
+    ) : Autenticavel by titular

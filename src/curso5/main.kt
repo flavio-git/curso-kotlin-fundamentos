@@ -31,4 +31,11 @@ fun main(){
         contador++
     }
 
+    val numbers = mutableListOf<Int>()
+
+    numbers.add(idade1)
+    numbers.add(idade2)
+    numbers.add(idade3)
+    numbers.add(idade4)
+
 }
